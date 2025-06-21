@@ -1,61 +1,233 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Messenger Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern real-time messaging application built with Laravel 12, Inertia.js, React, and TypeScript. This application provides a complete messaging platform with user authentication, real-time communication capabilities, and a responsive user interface.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Real-time Messaging**: Built with Laravel Reverb for WebSocket communication
+- **Modern Frontend**: React with TypeScript and Inertia.js for seamless SPA experience
+- **Beautiful UI**: TailwindCSS with DaisyUI components for responsive design
+- **User Authentication**: Complete auth system with Laravel Breeze
+- **Emoji Support**: Built-in emoji picker for enhanced messaging
+- **Markdown Support**: Rich text messaging with markdown rendering
+- **Docker Support**: Complete containerized development environment
+- **Code Quality**: ESLint, Prettier, and Laravel Pint for code formatting
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠 Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 12 (PHP 8.2+)
+- **Frontend**: React 18 + TypeScript
+- **Database**: PostgreSQL (primary) / MySQL (alternative)
+- **Real-time**: Laravel Reverb + Pusher
+- **Styling**: TailwindCSS + DaisyUI
+- **Build Tool**: Vite
+- **Containerization**: Docker + Laravel Sail
 
-## Learning Laravel
+## 📋 Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.2 or higher
+- Node.js 18+ and npm
+- PostgreSQL or MySQL
+- Docker and Docker Compose (optional)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🚀 Quick Start
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Using Docker (Recommended)
 
-## Laravel Sponsors
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd messenger
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Set up environment**
+   ```bash
+   cp .env.example .env
+   ```
 
-### Premium Partners
+3. **Start with Docker**
+   ```bash
+   docker-compose up -d
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+4. **Install dependencies**
+   ```bash
+   docker exec messenger-laravel.test-1 composer install
+   docker exec messenger-laravel.test-1 npm install
+   ```
 
-## Contributing
+5. **Set up the application**
+   ```bash
+   docker exec messenger-laravel.test-1 php artisan key:generate
+   docker exec messenger-laravel.test-1 php artisan migrate
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+6. **Build frontend assets**
+   ```bash
+   docker exec messenger-laravel.test-1 npm run build
+   ```
 
-## Code of Conduct
+### Manual Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-## Security Vulnerabilities
+2. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Set up environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## License
+4. **Configure database**
+   - Update database credentials in `.env`
+   - Run migrations: `php artisan migrate`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Build assets and start development**
+   ```bash
+   npm run dev
+   php artisan serve
+   ```
+
+## 🔧 Development
+
+### Available Scripts
+
+```bash
+# Start development server with all services
+composer run dev
+
+# Frontend development
+npm run dev          # Start Vite dev server
+npm run build        # Build for production
+npm run lint         # Run ESLint
+
+# Backend development
+php artisan serve    # Start Laravel dev server
+php artisan test     # Run PHPUnit tests
+
+# Code formatting
+composer run test    # Run tests
+./vendor/bin/pint    # Format PHP code
+```
+
+### Docker Aliases
+
+For easier development with Docker, you can set up these aliases:
+
+```bash
+# Add to your shell configuration (.zshrc, .bashrc, etc.)
+alias sail='docker exec messenger-laravel.test-1'
+alias pint='docker exec messenger-laravel.test-1 ./vendor/bin/pint'
+alias artisan='docker exec messenger-laravel.test-1 php artisan'
+```
+
+## 🏗 Project Structure
+
+```
+messenger/
+├── app/                 # Laravel application code
+├── resources/
+│   ├── js/             # React TypeScript components
+│   │   ├── Components/ # Reusable UI components
+│   │   ├── Layouts/    # Layout components
+│   │   ├── Pages/      # Inertia.js pages
+│   │   └── types/      # TypeScript definitions
+│   └── views/          # Blade templates
+├── routes/             # Application routes
+├── database/           # Migrations and seeders
+├── docker-compose.yml  # Docker configuration
+└── package.json        # Node.js dependencies
+```
+
+## 🔐 Environment Configuration
+
+Key environment variables to configure:
+
+```env
+# Application
+APP_NAME="Laravel Messenger"
+APP_URL=http://localhost
+
+# Database
+DB_CONNECTION=pgsql
+DB_DATABASE=messenger
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Broadcasting (for real-time features)
+BROADCAST_CONNECTION=reverb
+
+# Queue (for background jobs)
+QUEUE_CONNECTION=database
+```
+
+## 🧪 Testing
+
+```bash
+# Run PHP tests
+php artisan test
+
+# Run JavaScript tests (if configured)
+npm run test
+
+# Run code linting
+npm run lint
+./vendor/bin/pint --test
+```
+
+## 📦 Production Deployment
+
+1. **Build assets**
+   ```bash
+   npm run build
+   ```
+
+2. **Optimize Laravel**
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+
+3. **Set production environment**
+   ```env
+   APP_ENV=production
+   APP_DEBUG=false
+   ```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Code Style
+
+- **PHP**: Follow PSR-12 standards, use Laravel Pint for formatting
+- **JavaScript/TypeScript**: Use ESLint and Prettier configurations
+- **Commits**: Use conventional commit messages
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🆘 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Laravel documentation](https://laravel.com/docs)
+2. Review [Inertia.js documentation](https://inertiajs.com/)
+3. Open an issue in this repository
+
+---
+
+**Built with ❤️ using Laravel, React, and modern web technologies.**
