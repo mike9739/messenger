@@ -13,7 +13,7 @@ class Group extends Model
         'name',
         'description',
         'owner_id',
-        'last_message_id'
+        'last_message_id',
     ];
 
     public function users()
@@ -29,6 +29,6 @@ class Group extends Model
     public function owner()
     {
         return $this->belongsTo(User::class);
-    
+
     }
 }

@@ -4,8 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-use function Laravel\Prompts\table;
-
 return new class extends Migration
 {
     /**
@@ -24,11 +22,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::table('groups', function(Blueprint $table) {
+        Schema::table('groups', function (Blueprint $table) {
             $table->foreignId('last_message_id')->nullable()->constrained('messages');
         });
 
-        Schema::table('conversations', function(Blueprint $table) {
+        Schema::table('conversations', function (Blueprint $table) {
             $table->foreignId('last_message_id')->nullable()->constrained('messages');
         });
     }
