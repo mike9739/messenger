@@ -1,6 +1,8 @@
 import { Conversation, PageProps, User } from '@/types';
 import { usePage } from '@inertiajs/react';
 import { ReactNode, useEffect, useState } from 'react';
+import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import TextInput from "@/Components/TextInput";
 
 interface ChatPageProps extends PageProps {
     props: {
@@ -15,7 +17,7 @@ interface ChatLayoutProps {
 
 export default function ChatLayout({ children }: ChatLayoutProps) {
     const page = usePage<ChatPageProps>();
-    const conversations = page.props.conversation;
+    const conversations = page.props.conversations;
     const selectedConversation = page.props.selectedConversation;
     const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
     const [localConversations, setLocalConversations] = useState<
@@ -25,6 +27,7 @@ export default function ChatLayout({ children }: ChatLayoutProps) {
         Conversation[]
     >([]);
     const isUserOnline = (userId: User['id']) => onlineUsers[userId];
+    const onSearch = () => {};
     useEffect(() => {
         if (localConversations.length > 0) {
             setSortedConversations(
@@ -85,7 +88,36 @@ export default function ChatLayout({ children }: ChatLayoutProps) {
 
     return (
         <>
-            <div>{children}</div>
+            <div className="flex w-full flex-1 overflow-hidden">
+                <div
+                    className={`md:w-[300px]} sm:w-[220px flex w-full flex-col overflow-hidden bg-slate-800 transition-all ${selectedConversation ? '-ml-[100%] sm:ml-0' : ''} `}
+                >
+                    <div className="flex items-center justify-between px-3 py-2 text-xl font-medium">
+                        My Conversations
+                        <div
+                            className="tooltip tooltip-left"
+                            data-tip="Create new Group"
+                        >
+                            <button className="text-gray-400 hover:text-gray-200">
+                                <PencilSquareIcon className="ml-2 inline-block h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="p-3">
+                        <TextInput
+                            onKeyUp={onSearch}
+                            placeholder="Filters users and groups"
+                            className="w-full"
+                        />
+                    </div>
+                    <div className="flex-1 overflow-auto">
+
+                    </div>
+                </div>
+                <div className="flex-1 flex-col overflow-hidden">
+                    {children}
+                </div>
+            </div>
         </>
     );
 }
